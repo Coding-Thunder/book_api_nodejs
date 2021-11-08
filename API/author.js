@@ -1,5 +1,9 @@
-const Router = require("express").Router();
-const AuthorModel = require("../schema/author");
+
+const Router = require('express').Router();
+const AuthorModal = require('../schema/author');
+
+
+
 
 // Route    - /author
 // Des      - to get all authors
@@ -8,9 +12,9 @@ const AuthorModel = require("../schema/author");
 // Params   - none
 // Body     - none
 Router.get("/author", async (req, res) => {
-    const getAllAuthors = await AuthorModel.find();
+    const getAllAuthors = await AuthorModal.find();
     return res.json(getAllAuthors);
-});
+  });
 
 // Route     /author/new
 // Description add new author
@@ -19,12 +23,11 @@ Router.get("/author", async (req, res) => {
 // METHOD POST
 Router.post("/author/new", (req, res) => {
     const { newAuthor } = req.body;
-
-    AuthorModel.create(newAuthor);
-
+  
+    AuthorModal.create(newAuthor);
+  
     return res.json({ message: "Author added to the database" });
-});
-
+  });
 //TODO: Studen Task
 // Route       /author/updateName
 // Description Update name of the author
@@ -33,13 +36,13 @@ Router.post("/author/new", (req, res) => {
 // Method      Put
 // Params in the req.body are always in string format
 
-//TODO: Student Task
+
 /*
 Route               /author/delete
-Description         delete an author
-Access              PUBLIC
+Description         dlting an author
+Access              public
 Parameters          id
-Method              DELETE
+Method              DEL
 */
 Router.delete("/author/delete/:id", (req, res) => {
     const { id } = req.params;
@@ -52,5 +55,5 @@ Router.delete("/author/delete/:id", (req, res) => {
 
     return res.json(Database.Author);
 });
-
+      
 module.exports = Router;
